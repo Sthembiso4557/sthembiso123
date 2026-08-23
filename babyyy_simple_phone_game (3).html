@@ -1,0 +1,159 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Babyyy's Birthday</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Arial,sans-serif;background:#8edfff}
+#game{height:100dvh;min-height:100vh;position:relative;overflow:hidden;
+background:linear-gradient(#8edfff 0 68%,#79c95f 68%)}
+.box{position:absolute;z-index:10;left:50%;top:50%;transform:translate(-50%,-50%);
+width:calc(100% - 28px);max-width:500px;background:#fff;border:4px solid #34253d;
+border-radius:22px;padding:24px 18px;text-align:center;box-shadow:6px 6px #34253d}
+.hide{display:none}
+h1{color:#e93663;font-size:48px;line-height:.95;margin:8px 0 15px}
+h2{margin:8px 0 15px}
+p{line-height:1.5;font-size:15px}
+button{width:100%;min-height:54px;margin-top:10px;border:3px solid #34253d;
+border-radius:14px;background:#e93663;color:#fff;font-weight:bold;font-size:15px;
+touch-action:manipulation;cursor:pointer}
+.answer{background:#fff0f5;color:#34253d}
+#character{position:absolute;left:8%;bottom:35px;width:75px;height:125px;z-index:5;
+transition:left .6s ease;animation:bob 1.5s infinite}
+@keyframes bob{50%{transform:translateY(-6px)}}
+.head{position:absolute;left:8px;width:58px;height:58px;background:#ffd0ac;
+border:4px solid #34253d;border-radius:50%}
+.hair{position:absolute;left:-5px;top:-8px;width:62px;height:45px;background:#35202d;
+border:4px solid #34253d;border-radius:35px;z-index:-1}
+.body{position:absolute;left:15px;top:55px;width:48px;height:55px;background:#e93663;
+border:4px solid #34253d;border-radius:20px}
+.skirt{position:absolute;left:9px;top:98px;width:62px;height:28px;background:#ff75a2;
+border:4px solid #34253d}
+.eye{position:absolute;top:28px;width:6px;height:9px;background:#34253d;border-radius:50%}
+.e1{left:14px}.e2{right:14px}
+#speech{position:absolute;left:10px;bottom:160px;background:#fff;border:3px solid #34253d;
+border-radius:15px;padding:9px;font-size:12px;z-index:6}
+.star{position:absolute;z-index:8;width:38px;height:38px;cursor:pointer;touch-action:manipulation}
+.star:before{content:"★";font-size:42px;color:#ffd34d;-webkit-text-stroke:3px #34253d}
+.s1{left:25%;bottom:230px}.s2{left:52%;bottom:140px}.s3{right:18%;bottom:225px}
+.done{display:none}
+#gift{position:absolute;right:8%;bottom:45px;width:65px;height:60px;background:#ff5d82;
+border:4px solid #34253d;z-index:7;cursor:pointer;touch-action:manipulation}
+#gift:before{content:"";position:absolute;left:23px;top:0;width:12px;height:56px;background:#ffd34d}
+#gift:after{content:"";position:absolute;left:-4px;top:16px;width:65px;height:12px;background:#ffd34d}
+</style>
+</head>
+<body>
+<div id="game">
+<div id="character"><div class="head"><div class="hair"></div><i class="eye e1"></i><i class="eye e2"></i></div>
+<div class="body"></div><div class="skirt"></div></div>
+<div id="speech">Hey Babyyy!<br>Let's play!</div>
+<div class="star s1"></div><div class="star s2"></div><div class="star s3"></div>
+<div id="gift"></div>
+
+<div class="box" id="startBox">
+<small>A SPECIAL GAME FOR YOU</small>
+<h1>Happy<br>Birthday</h1><h2>Babyyy</h2>
+<p>Your little birthday adventure starts here.<br><br>Complete the game and find your surprise.</p>
+<button id="start">START GAME</button>
+</div>
+
+<div class="box hide" id="quiz">
+<small>LEVEL 1</small><h2>Birthday Challenge</h2>
+<p>What does Babyyy deserve?</p>
+<button class="answer wrong">A boring day</button>
+<button class="answer right">The best birthday ever</button>
+<button class="answer wrong">More homework</button>
+<p id="msg"></p>
+</div>
+<div><h2>
+            What should happen on your birthday?
+        </h2>
+
+        <div class="answer-buttons">
+
+            <button class="answer"
+                    onclick="wrongAnswer(this)">
+                Go to school 
+            </button>
+
+            <button class="answer"
+                    onclick="correctAnswer(this,2)">
+                Have an amazing day 
+            </button>
+
+            <button class="answer"
+                    onclick="wrongAnswer(this)">
+                Do homework 
+            </button>
+
+        </div>
+
+        <div class="surprise-box"
+             id="feedback2">
+            Correct! 
+            <br><br>
+            You earned a heart!
+        </div>
+
+<div class="box hide" id="starsBox">
+<small>LEVEL 2</small><h2>Find The Stars</h2>
+<p>Tap all three stars.</p><p><b><span id="count">0</span> / 3</b></p>
+</div>
+
+<div class="box hide" id="giftBox">
+<small>FINAL LEVEL</small><h2>You Found The Gift</h2>
+<p>You made it! Now open your final message.</p>
+<button id="open">OPEN MY MESSAGE</button>
+</div>
+
+<div class="box hide" id="final">
+<h1>Happy Birthday<br>Babyyy</h1>
+<p>
+Babyyy, happy birthday.<br><br>
+I hope you know how special you are and how much happiness you bring into my life.<br><br>
+Today is all about you, and I hope you know how special you are to me. I’m wishing you nothing but happiness, peace, success, and so many beautiful moments in this new chapter of your life.<br><br>
+
+I hope you enjoy every moment of your day, because you truly deserve itand I hope you smile while playing this game.<br><br>
+
+And one more thing… this isn’t the end of your birthday surprises. There’s something special with your name on it, and you’ll have to wait just a little longer to see it..<br><br>
+<strong>I can't wait to give you the actual gift.</strong><br><br>
+</p>
+<h2>Sthembiso</h2>
+</div>
+</div>
+
+<script>
+var hearts=0,found=0;
+function show(id){document.getElementById(id).classList.remove("hide")}
+function hide(id){document.getElementById(id).classList.add("hide")}
+function move(x){document.getElementById("character").style.left=x+"%"}
+document.getElementById("start").onclick=function(){
+hide("startBox");show("quiz");move(22)
+};
+document.querySelectorAll(".wrong").forEach(function(b){
+b.onclick=function(){document.getElementById("msg").textContent="Try again, Babyyy."}
+});
+document.querySelector(".right").onclick=function(){
+hearts++;document.getElementById("msg").textContent="Correct!";
+setTimeout(function(){hide("quiz");show("starsBox");move(38)},500)
+};
+document.querySelectorAll(".star").forEach(function(s){
+s.onclick=function(){
+if(s.classList.contains("done"))return;
+s.classList.add("done");found++;hearts++;
+document.getElementById("count").textContent=found;
+if(found===3)setTimeout(function(){hide("starsBox");show("giftBox");move(60)},500)
+}
+});
+document.getElementById("gift").onclick=function(){
+this.style.transform="rotate(8deg)";
+setTimeout(function(){document.getElementById("gift").style.transform=""},300)
+};
+document.getElementById("open").onclick=function(){hide("giftBox");show("final")}
+</script>
+</body>
+</html>
